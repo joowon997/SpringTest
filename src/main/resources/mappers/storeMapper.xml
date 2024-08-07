@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.joowon.spring.test.store.repository.StoreRepository">
+    <select id="getStroeList" resultType="com.joowon.spring.test.store.domain.Store">
+    SELECT
+    	`id`
+    	, `name`
+    	, `phoneNumber`
+    	, `address`
+    	, `businessNumber`
+    	, `introduce`
+    	, `createdAt`
+    	, `updatedAt`
+    FROM	
+    	`store`
+    </select>
+</mapper>

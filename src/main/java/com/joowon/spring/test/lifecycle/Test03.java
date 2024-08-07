@@ -8,6 +8,6 @@ public class Test03 {
 	
 	@RequestMapping("/lifecycle/test03/1")
 	public String menuList() {
-		return "lifecycle/test03.html";
+		return "lifecycle/test03";
 	}
 }
