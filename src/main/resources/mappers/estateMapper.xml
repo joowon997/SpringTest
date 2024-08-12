@@ -41,7 +41,7 @@
  	</select>
  
  	<select id="selectForAreaAndPeice" resultType="com.joowon.spring.test.realEstate.domain.RealEstate"
- 	parameterType="int">
+ 	parameterType="map">
  		SELECT
  			`id`
  			, `realtorId`
