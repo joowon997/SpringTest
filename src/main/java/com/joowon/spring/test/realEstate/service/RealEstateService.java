@@ -25,4 +25,36 @@ public class RealEstateService {
 	public List<RealEstate> getEstateAreaAndPriceInfo(int area, int price){
 		return realEstateReporsitory.selectForAreaAndPeice(area, price);
 	}
+	
+	public int insertEstate(RealEstate realEstate) {
+		
+		int count = realEstateReporsitory.insertEstate(realEstate);
+		
+		return count;
+	}
+	
+	public int insertParameterEstate(
+			int realtorId
+			, String address
+			, int area
+			, String type
+			, int price
+			,int rentPrice) {
+		
+		int count = realEstateReporsitory.insertParameterEstate(realtorId, address, area, type, price, rentPrice);
+		return count;
+	}
+	
+	public int updateRealEstate(int id, String type, int price){
+		
+		int count = realEstateReporsitory.updateRealEstate(id, type, price);
+		return count;
+	}
+	
+	public int deleteRealEstate(int id){
+		
+		int count = realEstateReporsitory.deleteRealEstate(id);
+		return count;
+	}
+	
 }

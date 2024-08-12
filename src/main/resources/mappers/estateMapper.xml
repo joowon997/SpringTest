@@ -58,7 +58,72 @@
 			area <![CDATA[>=]]> #{area}
  			AND
  			price <![CDATA[<=]]> #{price}
+ 			AND
+ 			`type` = `매매`
  		ORDER BY
  			id DESC
  	</select>
+ 	
+ 	<insert id="insertEstate" parameterType="com.joowon.spring.test.realEstate.domain.RealEstate">
+ 	INSERT
+ 		`real_estate`
+ 	(
+ 		`realtorId`
+ 		, `address`
+ 		, `area`
+ 		, `type`
+ 		, `price`
+ 		, `rentPrice`
+ 	)
+ 	VALUE
+ 	(
+		#{realtorId}
+		, #{address} 	
+		, #{area} 	
+		, #{type} 	
+		, #{price}
+		, #{rentPrice}
+ 	)
+ 	</insert>
+ 	
+ 	<insert id="insertParameterEstate" parameterType="map">
+		INSERT
+ 		`real_estate`
+ 	(
+ 		`realtorId`
+ 		, `address`
+ 		, `area`
+ 		, `type`
+ 		, `price`
+ 		, `rentPrice`
+ 	)
+ 	VALUE
+ 	(
+		#{realtorId}
+		, #{address} 	
+		, #{area} 	
+		, #{type} 	
+		, #{price}
+		, #{rentPrice}
+ 	) 	
+ 	</insert>
+ 	
+ 	<update id="updateRealEstate" parameterType="map">
+ 		UPDATE
+ 			`real_estate`
+ 		SET
+ 			`type` = #{type}
+ 			, `price` = #{price}
+			, `updatedAt` = now()
+		WHERE
+			`id` = #{id}
+ 	</update>
+		
+	<delete id="deleteRealEstate" parameterType="int">
+		DELETE FROM
+			`real_estate`
+		WHERE
+			`id` = #{id}
+	</delete>
+
  </mapper>
