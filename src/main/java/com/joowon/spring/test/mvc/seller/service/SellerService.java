@@ -12,10 +12,25 @@ public class SellerService {
 	@Autowired
 	private SellerRepository sellerRepository;
 	
-	
-	public int addSeller(Seller seller) {
+	// 닉네임, 매너온도, 프로필 이미지 경로 전달 받고 판매자 정보 저장
+	public int addSeller(
+			String nickName
+			, double temperature
+			, String profileImage) {
 		
-		return sellerRepository.addSellerOdject(seller);
+		int count = sellerRepository.insertSeller(nickName, temperature, profileImage);
+		
+		return count;
+	}
+	
+	// 선택된 id seller의 정보를 찾기
+	public Seller searchSeller(Integer id) {
+		
+		if (id != null) {
+			return sellerRepository.selectIdSeller(id);
+		}else {
+			return sellerRepository.selectLastSeller();
+		}
 	}
 	
 }
