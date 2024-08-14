@@ -20,7 +20,7 @@
  		)
  	</insert>
  	
- 	<select id="selectLastSeller" parameterType="map"
+ 	<select id="selectLastSeller"
  		resultType="com.joowon.spring.test.mvc.seller.domain.Seller">
  		SELECT
  			`nickname`
@@ -34,7 +34,7 @@
  			1
  	</select>
  	
- 	<select id="selectIdSeller" parameterType="map"
+ 	<select id="selectIdSeller" parameterType="int"
  		resultType="com.joowon.spring.test.mvc.seller.domain.Seller">
  		SELECT
  			`id`
