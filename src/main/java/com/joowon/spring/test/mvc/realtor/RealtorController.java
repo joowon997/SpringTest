@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,17 +29,18 @@ public class RealtorController {
 	// 받은 정보 저장 및 출력
 	@PostMapping("/addRealtor")
 	public String addRealtor(
-			@RequestParam("name") String name
-			, @RequestParam("phone") String phone
-			, @RequestParam("address") String address
-			, @RequestParam("grade") String grade
+//			@RequestParam("name") String name
+//			, @RequestParam("phone") String phone
+//			, @RequestParam("address") String address
+//			, @RequestParam("grade") String grade
+			@ModelAttribute Realtor realtor
 			, Model model) {
 		
-		Realtor realtor = new Realtor();
-		realtor.setOffice(name);
-		realtor.setPhoneNumber(phone);
-		realtor.setAddress(address);
-		realtor.setGrade(grade);
+//		Realtor realtor = new Realtor();
+//		realtor.setOffice(name);
+//		realtor.setPhoneNumber(phone);
+//		realtor.setAddress(address);
+//		realtor.setGrade(grade);
 		
 		// 받아온 파라메타 DB저장 후 id값 Realtor에 객체로 입력후 받아옴
 		realtorService.addRealtor(realtor);
