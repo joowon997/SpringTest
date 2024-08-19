@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 정보 리스트</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 </head>
 <body>
@@ -33,8 +33,7 @@
 						<span th:unless="${#strings.contains(member.phoneNumber, '010')}">
 								유효하지 않은 전화번호</span>		
 					</td>
-					<td th:text="|${#strings.substring(member.nationality, 0, 2)}-
-									${#strings.substring(member.nationality, 5)}|">함국-ㄴ</td>
+					<td th:text="${#strings.replace(member.nationality, '삼국시대', '삼국 -')}">함국-ㄴ</td>
 					<td>
 						<span th:text="${#strings.arraySplit(member.email, '@')[0]}" class="font-weight-bold"></span>
 						<span th:text="|@${#strings.arraySplit(member.email, '@')[1]}|"></span>
@@ -44,6 +43,7 @@
 								th:text="|${#strings.substring(member.introduce, 0, 15)}....|"></span>
 						<span th:unless="${#strings.length(member.introduce) >= 15}"
 								th:text="${member.introduce}"></span>
+							
 					</td>
 				</tr>
 			</tbody>
