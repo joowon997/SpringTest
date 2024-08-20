@@ -6,17 +6,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.joowon.spring.test.thymeleaf.domain.Member;
+import com.joowon.spring.test.thymeleaf.domain.Weather;
+import com.joowon.spring.test.thymeleaf.service.WeatherService;
 
 @Controller
 @RequestMapping("/thymeleaf")
 public class ThymeleafController {
-
+	
+	@Autowired
+	private WeatherService weatherService;
+	
 	@GetMapping("/test01")
 	public String test01() {
 		return "thymeleaf/test01";
@@ -147,9 +155,43 @@ public class ThymeleafController {
 	}
 	
 	@GetMapping("/test05")
-	public String test05() {
+	public String test05(Model model) {
 		
-		return "thymeleaf/test05/test05";
+		List<Weather> weather = weatherService.weatherList();
+		
+		model.addAttribute("weatherList", weather);
+		
+		return "thymeleaf/test05";
 	}
+
+	@GetMapping("/test05/input")
+	public String test05Input() {
+		
+		return "thymeleaf/test05Input";
+	}
+	
+	@PostMapping("/test05/insert")
+	public String test05insert(
+			@RequestParam("date") LocalDate date
+			,@RequestParam("weather") String weather
+			,@RequestParam("microDust") String microDust
+			,@RequestParam("temperatures") double temperatures
+			,@RequestParam("precipitation") double precipitation
+			,@RequestParam("windSpeed") double windSpeed
+			,Model model) {
+		
+		Weather addweather = new Weather();
+		addweather.setDate(date);
+		addweather.setWeather(weather);
+		addweather.setMicroDust(microDust);
+		addweather.setTemperatures(temperatures);
+		addweather.setPrecipitation(precipitation);
+		addweather.setWindSpeed(windSpeed);
+		
+		weatherService.addweather(addweather);
+		
+		return "redirect:/thymeleaf/test05";
+	}
+
 
 }
