@@ -7,6 +7,7 @@ public class Weather {
 	
 	private int id;
 	private LocalDate date;
+	private String dateString;
 	private String weather;
 	private double temperatures;
 	private double precipitation;

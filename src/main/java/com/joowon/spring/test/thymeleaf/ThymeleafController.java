@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -172,13 +173,13 @@ public class ThymeleafController {
 	
 	@PostMapping("/test05/insert")
 	public String test05insert(
-			@RequestParam("date") LocalDate date
-			,@RequestParam("weather") String weather
-			,@RequestParam("microDust") String microDust
-			,@RequestParam("temperatures") double temperatures
-			,@RequestParam("precipitation") double precipitation
-			,@RequestParam("windSpeed") double windSpeed
-			,Model model) {
+			@RequestParam("date") @DateTimeFormat(pattern = "yyyy년 MM월 dd일") LocalDate date
+			, @RequestParam("weather") String weather
+			, @RequestParam("microDust") String microDust
+			, @RequestParam("temperatures") double temperatures
+			, @RequestParam("precipitation") double precipitation
+			, @RequestParam("windSpeed") double windSpeed
+			, Model model) {
 		
 		Weather addweather = new Weather();
 		addweather.setDate(date);
