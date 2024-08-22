@@ -21,9 +21,11 @@
 		$(document).ready(function(){
 			$("#addBtn").on("click",function(){
 				
+				//변수 설정
 				let name = $("#nameInput").val();
 				let link = $("#linkInput").val();
 				
+				//유효성 검사
 				if(name == ""){
 					alert("이름을 입력하세요");
 					return;
@@ -32,18 +34,17 @@
 					alert("주소을 입력하세요");
 					return;
 				}
-				if(!link.includes('http://')){
-					
-				}else if(!link.includes('https://')){
+				if(!link.startWith('http://') && !link.startWith('https://')){
 					alert("http:// 또는 https:// 를 포함해 주세요");
 					return;
 				}
 				
-				
+				//ajax를 통해 API 사용
 				$.ajax({
-					type:"get"
+					type:"post"
 					, url:"/ajax/url/add"
 					, data:{"name":name, "link":link}
+					// insert는 urlController addUrl의 response의 형태인 resultMap의 변수
 					, success:function(insert){
 						if(insert.result == "success"){
 							location.href="/ajax/url/list";

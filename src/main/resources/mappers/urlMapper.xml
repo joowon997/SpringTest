@@ -19,7 +19,7 @@
  	</select>
  	
  	<insert id="insertUrl" parameterType="com.joowon.spring.test.ajax.domain.Url">
- 	INSERT
+ 	INSERT INTO
  		`url`
  	(
  		`name`
