@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.joowon.spring.test.ajax.repository.UrlRepository">
+ 	
+ 	<select id="selectUrl" resultType="com.joowon.spring.test.ajax.domain.Url">
+ 		SELECT
+ 			`id`
+ 			, `name`
+ 			, `link`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`url`
+ 		ORDER BY
+ 			`id` DESC
+ 	</select>
+ 	
+ 	<insert id="insertUrl" parameterType="com.joowon.spring.test.ajax.domain.Url">
+ 	INSERT
+ 		`url`
+ 	(
+ 		`name`
+ 		, `link`
+ 	)
+ 	VALUE
+ 	(
+ 		#{name}
+ 		,#{link}
+ 	)
+ 	
+ 	</insert>
+ 
+ </mapper>
