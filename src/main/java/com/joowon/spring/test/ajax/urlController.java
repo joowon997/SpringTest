@@ -23,6 +23,17 @@ public class urlController {
 	@Autowired
 	private UrlService urlService;
 	
+	//view
+	@GetMapping("/list")
+	public String urlList(Model model) {
+		
+		List<Url> urlList = urlService.selecturl();
+		
+		model.addAttribute("urlList", urlList);
+		
+		return "ajax/url/list";
+	}
+	
 	@GetMapping("/create")
 	public String createUrl() {
 		
@@ -52,14 +63,36 @@ public class urlController {
 		return resultMap;
 	}
 
-	@GetMapping("/list")
-	public String urlList(Model model) {
+	// 중복검사
+	@PostMapping("/duplicate-url")
+	@ResponseBody
+	public Map<String, Boolean> isDuplicateUrl(
+			@RequestParam("url") String url){
+		Map<String, Boolean> resultMap = new HashMap<>();
 		
-		List<Url> urlList = urlService.selecturl();
+		if (urlService.isDuplicateUrl(url)) {
+			resultMap.put("isDuplicate", true);
+		}else {
+			resultMap.put("isDuplicate", false);
+		}
 		
-		model.addAttribute("urlList", urlList);
+		return resultMap;
+	}
+	
+	// 삭제기능
+	@GetMapping("/delete")
+	@ResponseBody
+	public Map<String, Boolean> deleteUrl(
+			@RequestParam("id") int id) {
 		
-		return "ajax/url/list";
+		Map<String, Boolean> deleteMap = new HashMap<>();
+		
+		if (urlService.deleteUrl(id)) {
+			deleteMap.put("isDelete", true);
+		}else {
+			deleteMap.put("isDelete", false);
+		}
+		return deleteMap;
 	}
 	
 	

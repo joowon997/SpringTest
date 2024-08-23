@@ -32,5 +32,22 @@
  	)
  	
  	</insert>
+ 	
+ 	<select id="selectCountByUrl" parameterType="string" resultType="int">
+ 		SELECT
+ 			count(*)
+ 		FROM
+ 			`url`
+ 		WHERE
+ 			`link` = #{url}
+ 	
+ 	</select>
+ 	
+ 	<delete id="deleteUrl" parameterType="int">
+ 		DELETE FROM
+			`url`
+		WHERE
+			`id` = #{id}
+ 	</delete>
  
  </mapper>
