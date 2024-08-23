@@ -24,7 +24,7 @@
 					<td th:text="${status.count}">21</td>
 					<td th:text="${url.name}">유튜브</td>
 					<td th:text="${url.link}">youtube.com</td>
-					<td><button class="btn btn-danger btn-sm delete-btn" type="button" th:value="${url.id}">삭제</button></td>
+					<td><button class="btn btn-danger btn-sm delete-btn" type="button" th:data-url-id="${url.id}">삭제</button></td>
 				</tr>
 			</tbody>
 		</table>
@@ -40,7 +40,7 @@
 			
 			$(".delete-btn").on("click", function(){
 				
-				let id = $(this).val();
+				let id = $(this).data("url-id");
 				
 				$.ajax({
 					type:"get"
@@ -48,7 +48,8 @@
 					, data: {"id":id}
 					, success: function(data){
 						if(data.isDelete){
-							location.href = "/ajax/url/list";							
+							// 페이지 그대로 새로고침
+							location.reload();							
 						}else{
 							alert("삭제 실패");
 						}
