@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.joowon.spring.test.ajax.repository.BookingRepository">
+ 	<!-- 예약리스트 조회 -->
+ 	<select id="selectBooking" resultType="com.joowon.spring.test.ajax.domain.Booking">
+ 		SELECT
+ 			`id`
+ 			,`name`
+ 			,`headcount`
+ 			,`day`
+ 			,`date`
+ 			,`phoneNumber`
+ 			,`state`
+ 			,`createdAt`
+ 			,`updatedAt`
+ 		FROM
+ 			`booking`;
+ 	</select>
+ 	
+ 	<!-- 예약리스트 삭제 -->
+ 	<delete id="deleteBooking" parameterType="int">
+ 		DELETE FROM
+			`booking`
+		WHERE
+			`id` = #{id}
+ 	</delete>
+ 	
+ 	<!-- 예약리스트 추가 -->
+ 	<insert id="insertBooking" parameterType="com.joowon.spring.test.ajax.domain.Booking">
+ 		INSERT INTO
+ 			`booking`
+ 		(
+ 			`name`
+ 			,`headcount`
+ 			,`day`
+ 			,`date`
+ 			,`phoneNumber`
+ 			,`state`
+ 		)
+ 		VALUE
+ 		(
+ 			#{name}
+ 			,#{headcount}
+ 			,#{day}
+ 			,#{date}
+ 			,#{phoneNumber}
+ 			,#{state}
+ 		)
+ 	</insert>
+ 	
+ 	<select id="selectReservation" parameterType="map" resultType="com.joowon.spring.test.ajax.domain.Booking">
+ 		SELECT
+ 			`id`
+ 			,`name`
+ 			,`headcount`
+ 			,`day`
+ 			,`date`
+ 			,`phoneNumber`
+ 			,`state`
+ 			,`createdAt`
+ 			,`updatedAt`
+ 		FROM
+ 			`booking`
+		WHERE
+			`name` = #{name}
+			and
+			`phoneNumber` = #{phoneNember}
+ 	</select>
+ 	
+ </mapper>
