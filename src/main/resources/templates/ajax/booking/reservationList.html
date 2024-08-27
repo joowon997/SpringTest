@@ -37,7 +37,7 @@
 	            	</tr>
 	            </thead>
 	            <tbody>
-	            	<tr th:each="booking:${bookingList}">
+	            	<tr th:each="booking, status:${bookingList}">
 						<td th:text="${booking.name}">강강</td>
 						<td th:text="${#temporals.format(booking.date,'yyyy년 M월 d일')}">2020년2월30일</td>
 						<td th:text="${booking.day}">5</td>
@@ -47,7 +47,7 @@
 							<span th:case="대기중" class="text-primary">대기중</span>
 							<span th:case="확정" class="text-success">확정</span>
 							<span th:case="취소" class="text-danger">취소</span>
-							<span th:case="*" class="">그 외</span>
+							<span th:case="*" th:text="${booking.state}">그 외</span>
 						</td>
 						<td><button type="button" class="btn btn-danger btn-sm delete-btn" th:data-booking-id="${booking.id}">삭제</button></td>
 	            	</tr>

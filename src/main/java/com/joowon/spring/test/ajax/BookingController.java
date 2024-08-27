@@ -1,5 +1,6 @@
 package com.joowon.spring.test.ajax;
 
+import java.awt.print.Book;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
@@ -75,7 +76,7 @@ public class BookingController {
 			,@RequestParam("day") int day
 			,@RequestParam("date") @DateTimeFormat(pattern = "yyyy년 M월 d일") LocalDate date
 			,@RequestParam("phoneNumber") String phoneNumber
-			,Model model){
+			){
 		
 		Booking reservation = new Booking();
 		reservation.setName(name);
@@ -97,12 +98,22 @@ public class BookingController {
 	// 예약확인
 	@GetMapping("/serch")
 	@ResponseBody
-	public Booking serch(
+	public Map<String, Object> serchBooking(
 			@RequestParam("name") String name
 			,@RequestParam("phoneNember") String phoneNember
-			,Model model){
+			){
 		
-		return bookingService.reservationSerch(name, phoneNember);
+		Booking result = bookingService.reservationSerch(name, phoneNember);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		if (result != null) {
+			resultMap.put("result", "success");
+			resultMap.put("booking", result);
+		}else {
+			resultMap.put("result", "fail");
+		}
+		
+		return resultMap;
 	}
 	
 }

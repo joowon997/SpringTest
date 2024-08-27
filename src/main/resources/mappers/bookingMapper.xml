@@ -17,7 +17,7 @@
  			,`createdAt`
  			,`updatedAt`
  		FROM
- 			`booking`;
+ 			`booking`
  	</select>
  	
  	<!-- 예약리스트 삭제 -->
@@ -66,8 +66,7 @@
  			`booking`
 		WHERE
 			`name` = #{name}
-			and
-			`phoneNumber` = #{phoneNember}
+			AND `phoneNumber` = #{phoneNember}
  	</select>
  	
  </mapper>

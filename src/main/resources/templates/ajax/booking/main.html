@@ -116,12 +116,12 @@
                     	,url:"/ajax/booking/serch"
                     	,data:{"name":name, "phoneNember":phoneNumber}
                     	,success:function(data){
-                    		if(data.id != null){
-	                    		alert("이름 : " + data.name
-	                    			+ "\n날짜 : " + data.date
-	                    			+ "\n일수 : " + data.day
-	                    			+ "\n인원 : " + data.headcount
-	                    			+ "\n상태 : " + data.state);
+                    		if(data.result == "success"){
+	                    		alert("이름 : " + data.booking.name
+	                    			+ "\n날짜 : " + data.booking.date
+	                    			+ "\n일수 : " + data.booking.day
+	                    			+ "\n인원 : " + data.booking.headcount
+	                    			+ "\n상태 : " + data.booking.state);
                     		}else{
 	                    		alert("예약된 정보가 없습니다.");
                     		}
