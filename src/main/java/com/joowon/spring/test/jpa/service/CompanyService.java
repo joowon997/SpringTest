@@ -48,7 +48,13 @@ public class CompanyService {
 		Company company = optionalCompany.orElse(null);
 		
 		// 조회정보 삭제
+//		if(optionalCompany.isPresent()) {
+//			companyRepository.delete(optionalCompany.get());
+//		}
 		
-		companyRepository.delete(company);
+		// null이 아닐때 수행할 기능 등록
+		// c : optionalCompany 객체에 포함된 실제 객체
+		optionalCompany.ifPresent(c -> companyRepository.delete(c));
+		
 	}
 }

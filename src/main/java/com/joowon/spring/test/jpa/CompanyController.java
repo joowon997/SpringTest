@@ -60,7 +60,7 @@ public class CompanyController {
 	@ResponseBody
 	public String deleteCompany() {
 		
-		companyService.deleteCompany(9);
+		companyService.deleteCompany(11);
 		
 		return "삭제 완료!!";
 	}
