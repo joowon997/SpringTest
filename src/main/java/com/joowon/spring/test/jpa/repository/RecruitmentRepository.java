@@ -1,11 +1,10 @@
 package com.joowon.spring.test.jpa.repository;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.joowon.spring.test.jpa.domain.Recruitment;
 
@@ -27,7 +26,7 @@ public interface RecruitmentRepository extends JpaRepository<Recruitment, Intege
 	public List<Recruitment> findByRegionAndSalaryBetween(String region, int min, int max);
 
 	// 마감일이 2026-04-10 이후이고 연봉이 8100 이상인 정규직 공고를 연봉 내림차순으로 조회하세요.
-	@Query(value = "SELECT * FROM `recruitment` WHERE `deadline` > ':deadline' AND `salary` >= :salary ORDER BY `salary` DESC", nativeQuery = true)
+	@Query(value = "SELECT * FROM `recruitment` WHERE `deadline` > :deadline AND `salary` >= :salary ORDER BY `salary` DESC", nativeQuery = true)
 	public List<Recruitment> selectBydeadlineAndsalary(
 								@Param("deadline") String deadline
 								, @Param("salary") int salary);
