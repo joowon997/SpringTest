@@ -17,7 +17,7 @@ public interface RecruitmentRepository extends JpaRepository<Recruitment, Intege
 	public List<Recruitment> findByPositionAndType(String position, String type);
 
 	// 정규직이거나 연봉이 9000 이상인 공고를 조회하고 아래와 같이 출력하세요.
-	public List<Recruitment> findByTypeOrSalaryAfter(String type, int salary);
+	public List<Recruitment> findByTypeOrSalaryGreaterThanEqual(String type, int salary);
 	
 	// 계약직 목록을 연봉 기준으로 내림차순 정렬해서 3개만 조회하세요
 	public List<Recruitment> findTop3ByTypeOrderBySalaryDesc(String type);	
@@ -26,9 +26,14 @@ public interface RecruitmentRepository extends JpaRepository<Recruitment, Intege
 	public List<Recruitment> findByRegionAndSalaryBetween(String region, int min, int max);
 
 	// 마감일이 2026-04-10 이후이고 연봉이 8100 이상인 정규직 공고를 연봉 내림차순으로 조회하세요.
-	@Query(value = "SELECT * FROM `recruitment` WHERE `deadline` > :deadline AND `salary` >= :salary ORDER BY `salary` DESC", nativeQuery = true)
+	@Query(value = "SELECT * FROM `recruitment`"
+			+ " WHERE `deadline` > :deadline"
+			+ " AND `salary` >= :salary"
+			+ " AND `type` = :type"
+			+ "ORDER BY `salary` DESC", nativeQuery = true)
 	public List<Recruitment> selectBydeadlineAndsalary(
 								@Param("deadline") String deadline
-								, @Param("salary") int salary);
+								, @Param("salary") int salary
+								, @Param("type") String type);
 	
 }

@@ -50,10 +50,10 @@ public class RecruitmentController {
 		return recruitmentList;
 	}
 	
-	@GetMapping("/findByTypeOrSalaryAfter")
+	@GetMapping("/findByTypeOrSalaryGreaterThanEqual")
 	public List<Recruitment> findByTypeOrSalaryAfter(){
 		List<Recruitment> recruitmentList = new ArrayList<>();
-		recruitmentList = recruitmentRepository.findByTypeOrSalaryAfter("정규직", 8999);
+		recruitmentList = recruitmentRepository.findByTypeOrSalaryGreaterThanEqual("정규직", 9000);
 		
 		return recruitmentList;
 	}
@@ -77,7 +77,7 @@ public class RecruitmentController {
 	@GetMapping("/nativeQuery")
 	public List<Recruitment> nativeQuery(){
 		List<Recruitment> recruitmentList = new ArrayList<>();
-		recruitmentList = recruitmentRepository.selectBydeadlineAndsalary("2026-04-10 00:00:00", 8100);
+		recruitmentList = recruitmentRepository.selectBydeadlineAndsalary("2026-04-10 00:00:00", 8100, "정규직");
 		
 		return recruitmentList;
 	}

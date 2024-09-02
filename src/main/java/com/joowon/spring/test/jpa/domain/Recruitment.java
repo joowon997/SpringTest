@@ -1,6 +1,5 @@
 package com.joowon.spring.test.jpa.domain;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -38,7 +37,7 @@ public class Recruitment {
 	private String type;
 	private String region;
 	private int salary;
-	private LocalDate deadline;
+	private LocalDateTime deadline;
 	
 	@Column(name = "createdAt")
 	@CreationTimestamp
